@@ -1,0 +1,3 @@
+class SecretCode < ApplicationRecord
+  
+end

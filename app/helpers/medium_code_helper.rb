@@ -1,0 +1,2 @@
+module MediumCodeHelper
+end

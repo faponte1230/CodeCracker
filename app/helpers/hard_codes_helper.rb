@@ -1,0 +1,2 @@
+module HardCodesHelper
+end
