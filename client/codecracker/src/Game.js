@@ -40,6 +40,19 @@ function Game() {
     setResult(null); // Reset the result when starting a new game
   };
 
+  const getColor = (status) => {
+    switch (status) {
+      case 'correct':
+        return 'lightgreen';
+      case 'correct for another attribute':
+        return 'orange';
+      case 'incorrect':
+        return 'lightcoral';
+      default:
+        return 'white';
+    }
+  };
+
   return (
     <div>
       <button className='button' onClick={handleNewGame}>New Game</button>
@@ -51,10 +64,18 @@ function Game() {
       {result && (
         <div>
           <h3>Result:</h3>
-          <ul style={{ listStyleType: 'none', padding: 0 }}>
-            {result.result.map((res, index) => (
-              <li key={index}>
-                Digit {res.digit}: {res.status}
+          <ul style={{ display: 'flex',justifyContent: 'center', listStyleType: 'none', padding: 5 }}>            {result.result.map((res, index) => (
+              <li key={index} style={{ margin: '0 10px'}}>
+                <div style={{ 
+                  backgroundColor: getColor(res.status), 
+                  padding: '10px', 
+                  borderRadius: '5px', 
+                  width: '100px', // fixed width
+                  margin: '0 auto', // center align
+                  textAlign: 'center' // center text
+                }}>
+                  Digit {res.digit}: {res.status}
+                </div>
               </li>
             ))}
           </ul>

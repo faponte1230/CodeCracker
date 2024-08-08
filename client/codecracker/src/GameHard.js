@@ -44,7 +44,21 @@ function GameHard() {
       console.error('Error:', error);
     }
     setGuess({ digit1: '', digit2: '', digit3: '', digit4: '', digit5: '' });
-    setResult(null)
+    setResult({})
+  };
+
+
+  const getColor = (status) => {
+    switch (status) {
+      case 'correct':
+        return 'lightgreen';
+      case 'correct for another attribute':
+        return 'orange';
+      case 'incorrect':
+        return 'lightcoral';
+      default:
+        return 'white';
+    }
   };
 
   return (
@@ -58,10 +72,20 @@ function GameHard() {
       <button className='button' onClick={handleGuess}>Submit Guess</button>
       <p>{message}</p>
       {errorsList && errorsList.map((e) => (<ul key={e} style={{color: "red"}}>{e}</ul>))}
-      <ul style={{ listStyleType: "none", padding: 0 }}>
+      <ul style={{display: 'flex', justifyContent: 'center', listStyleType: "none", padding: 0 }}>
         {result.result && result.result.map((digitResult, index) => (
-          <li key={index}>Digit {digitResult.digit}: {digitResult.status}</li>
-        ))}
+              <li key={index} style={{  margin: '0 10px' }}>
+              <div style={{ 
+                backgroundColor: getColor(digitResult.status), 
+                padding: '10px', 
+                borderRadius: '5px', 
+                width: '100px', // fixed width
+                margin: '0 auto', // center align
+                textAlign: 'center' // center text
+              }}>
+                Digit {digitResult.digit}: {digitResult.status}
+              </div>
+            </li>        ))}
       </ul>
     </div>
   )
